@@ -313,7 +313,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
 //        translation.columns.3.z = 0 // Translate 10 cm in front of the camera
 //        node.simdTransform = matrix_multiply(frame.camera.transform, translation)
         var trans = frame.camera.transform.translation
-        for (index,anchor) in self.geoAnchors{
+        for index,anchor in self.geoAnchors{
             let x=anchor.geoAnchor.coordinate.latitude
             let y=anchor.geoAnchor.coordinate.longitude
             let z=anchor.geoAnchor.altitude
