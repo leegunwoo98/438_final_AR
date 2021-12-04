@@ -32,6 +32,10 @@ extension ARController: ARCoachingOverlayViewDelegate {
         mapView.isUserInteractionEnabled = true
         undoButton.isEnabled = true
         hideUIForCoaching(false)
+        for location in self.customLocations {
+            print (location.altitude)
+            self.addGeoAnchor(at: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),altitude: CLLocationDistance(location.altitude))
+        }
     }
 
     func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4720D6CF275C1FD9006073F3 /* CustomLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4720D6CE275C1FD9006073F3 /* CustomLocation.swift */; };
 		E599041F275C00B100DA8907 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599041E275C00B100DA8907 /* AppDelegate.swift */; };
 		E5990421275C00B100DA8907 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5990420275C00B100DA8907 /* SceneDelegate.swift */; };
 		E5990423275C00B100DA8907 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5990422275C00B100DA8907 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4720D6CE275C1FD9006073F3 /* CustomLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLocation.swift; sourceTree = "<group>"; };
 		E599041B275C00B100DA8907 /* 438-Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "438-Final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E599041E275C00B100DA8907 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5990420275C00B100DA8907 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				E5990435275C072900DA8907 /* GPXExporter.swift */,
 				E5990432275C072900DA8907 /* GPXParser.swift */,
 				E5990434275C072900DA8907 /* Utilities.swift */,
+				4720D6CE275C1FD9006073F3 /* CustomLocation.swift */,
 				E599041E275C00B100DA8907 /* AppDelegate.swift */,
 				E5990420275C00B100DA8907 /* SceneDelegate.swift */,
 				E5990422275C00B100DA8907 /* ViewController.swift */,
@@ -159,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4720D6CF275C1FD9006073F3 /* CustomLocation.swift in Sources */,
 				E5990438275C072900DA8907 /* Utilities.swift in Sources */,
 				E5990439275C072900DA8907 /* GPXExporter.swift in Sources */,
 				E5990423275C00B100DA8907 /* ViewController.swift in Sources */,

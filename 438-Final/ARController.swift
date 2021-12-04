@@ -22,11 +22,11 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
     @IBOutlet weak var menuButton: UIButton!
     
     
-    
-    
     let coachingOverlay = ARCoachingOverlayView()
     
     let locationManager = CLLocationManager()
+    var customLocations = [CustomLocation( -90.30744095893259, 38.64673810842665,   161, "olin"),CustomLocation( -90.30772228652681, 38.6483489506585, 161, "olin"),CustomLocation( -90.30800231730747, 38.64839381265477,    165, "olin")
+    ]
     
     var currentAnchors: [ARAnchor] {
         return arView.session.currentFrame?.anchors ?? []
