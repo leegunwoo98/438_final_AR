@@ -308,23 +308,24 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         }
         self.trackingStateLabel.text = text
     }
+    
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
 //        var translation = matrix_identity_float4x4
 //        translation.columns.3.z = 0 // Translate 10 cm in front of the camera
 //        node.simdTransform = matrix_multiply(frame.camera.transform, translation)
-        var trans = frame.camera.transform.translation
-        for index,anchor in self.geoAnchors{
-            let x=anchor.geoAnchor.coordinate.latitude
-            let y=anchor.geoAnchor.coordinate.longitude
-            let z=anchor.geoAnchor.altitude
-            let distance = sqrt((x-trans.x)^2+(y-trans.y)^2+(z-trans.z)^2)
-            if (distance <1){
-                arView.session.remove(anchor: anchor)
+        let trans = frame.camera.transform.translation
+        for (index, anchor) in self.geoAnchors.enumerated() {
+            let x = anchor.geoAnchor.coordinate.latitude
+            let y = anchor.geoAnchor.coordinate.longitude
+            let z = anchor.geoAnchor.altitude
+            let distance = sqrt(pow(Float(x) - trans.x, 2) + pow(Float(y)-trans.y, 2) + pow(Float(z!)-trans.z, 2))
+            if (distance < 1){
                 
+                arView.session.remove(anchor: anchor.geoAnchor)
+                                
                 // Remove map overlay
                 mapView.removeOverlay(anchor.mapOverlay)
                 self.geoAnchors.remove(at:index)
-                
             }
         }
     }
