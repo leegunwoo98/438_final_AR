@@ -24,13 +24,12 @@ extension ARController: ARCoachingOverlayViewDelegate {
     
     func coachingOverlayViewWillActivate(_ coachingOverlayView: ARCoachingOverlayView) {
         mapView.isUserInteractionEnabled = false
-        undoButton.isEnabled = false
+//        undoButton.isEnabled = false
         hideUIForCoaching(true)
     }
 
     func coachingOverlayViewDidDeactivate(_ coachingOverlayView: ARCoachingOverlayView) {
         mapView.isUserInteractionEnabled = true
-        undoButton.isEnabled = true
         hideUIForCoaching(false)
         for location in self.customLocations {
             print (location.altitude)
@@ -58,7 +57,7 @@ extension ARController: ARCoachingOverlayViewDelegate {
     }
     
     func hideUIForCoaching(_ active: Bool) {
-        undoButton.isHidden = active
+//        undoButton.isHidden = active
         trackingStateLabel.isHidden = active
     }
 }

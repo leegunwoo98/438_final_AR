@@ -9,9 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var name: String?
+    var name: String = "Peter"
     var theme: String?
-    
     
     @IBAction func startGame(_ sender: Any) {
         
@@ -19,6 +18,7 @@ class ViewController: UIViewController {
         
         let arController = storyboard!.instantiateViewController(withIdentifier: "ArView") as! ARController
 
+        arController.name = name
         navigationController?.pushViewController(arController, animated: true)
         
     }
