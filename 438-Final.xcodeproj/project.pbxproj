@@ -21,6 +21,7 @@
 		E599043B275C076F00DA8907 /* ARController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599043A275C076F00DA8907 /* ARController.swift */; };
 		E599043D275C080D00DA8907 /* ARController+CoachingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599043C275C080D00DA8907 /* ARController+CoachingOverlay.swift */; };
 		E599043F275C086000DA8907 /* ARController+LoadSaveAnchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599043E275C086000DA8907 /* ARController+LoadSaveAnchors.swift */; };
+		E5990465275C251D00DA8907 /* Chest.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E5990464275C251D00DA8907 /* Chest.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		E599043C275C080D00DA8907 /* ARController+CoachingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARController+CoachingOverlay.swift"; sourceTree = "<group>"; };
 		E599043E275C086000DA8907 /* ARController+LoadSaveAnchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARController+LoadSaveAnchors.swift"; sourceTree = "<group>"; };
 		E5990442275C168300DA8907 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5990464275C251D00DA8907 /* Chest.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Chest.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				E599043A275C076F00DA8907 /* ARController.swift */,
 				E599043C275C080D00DA8907 /* ARController+CoachingOverlay.swift */,
 				E5990427275C00B400DA8907 /* Assets.xcassets */,
+				E5990464275C251D00DA8907 /* Chest.scnassets */,
 				E5990424275C00B100DA8907 /* Main.storyboard */,
 				E5990429275C00B400DA8907 /* LaunchScreen.storyboard */,
 				E5990442275C168300DA8907 /* Info.plist */,
@@ -152,6 +155,7 @@
 				E599042B275C00B400DA8907 /* LaunchScreen.storyboard in Resources */,
 				E5990428275C00B400DA8907 /* Assets.xcassets in Resources */,
 				E5990426275C00B100DA8907 /* Main.storyboard in Resources */,
+				E5990465275C251D00DA8907 /* Chest.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
