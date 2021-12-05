@@ -22,15 +22,18 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
     @IBOutlet weak var menuButton: UIButton!
     
     var name: String?
+    var theme: String?
     var score: Int = 0
     var scoreOpen: Bool = false
     var scoreView: UIView?
+    var continueGame: Bool = true
     
     let coachingOverlay = ARCoachingOverlayView()
     
     let locationManager = CLLocationManager()
-    var customLocations = [CustomLocation( -90.30744095893259, 38.64673810842665,   161, "olin"),CustomLocation( -90.30772228652681, 38.6483489506585, 161, "olin"),CustomLocation( -90.30800231730747, 38.64839381265477,    165, "olin")
-    ]
+    var customLocations:[CustomLocation] = []
+    
+    var checklist: Dictionary<String, String> = [:]
     
     var currentAnchors: [ARAnchor] {
         return arView.session.currentFrame?.anchors ?? []
@@ -78,8 +81,12 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         
         scoreView = UIView(frame: self.arView.frame)
         arView.addSubview(scoreView!)
-        scoreView!.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.7)
+        scoreView!.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.6)
         scoreView?.isHidden = true
+        
+        for loc in customLocations {
+            checklist[loc.name] = ""
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,17 +106,21 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         locationManager.stopUpdatingLocation()
     }
     
-    
-    @IBAction func menuButtonTapped(_ sender: Any) {
-//        presentAdditionalActions()
-                
+    @IBAction func scoreSheetTapped(_ sender: Any) {
         if scoreOpen {
-            print("Close Score")
-            scoreOpen = false
-            scoreView?.isHidden = true
+            if continueGame {
+                print("Close Scoresheet")
+                undoButton.isEnabled = true
+                scoreOpen = false
+                scoreView?.isHidden = true
+            }
+            else {
+                navigationController?.popToRootViewController(animated: true)
+            }
         }
         else {
-            print("Open Score")
+            print("Open Scoresheet")
+            undoButton.isEnabled = false
             scoreOpen = true
             
             for subUIView in scoreView?.subviews as [UIView] {
@@ -119,15 +130,70 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
             
             var nameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
             nameLabel.text = "Hi " + name!
-            nameLabel.center = CGPoint(x: 207, y: 207)
+            nameLabel.center = CGPoint(x: 207, y: 150)
             scoreView!.addSubview(nameLabel)
             var scoreLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
-            scoreLabel.center = CGPoint(x: 207, y: 260)
+            scoreLabel.center = CGPoint(x: 207, y: 200)
             scoreLabel.text = "Score: " + String(score)
             scoreView!.addSubview(scoreLabel)
             
+            let keys = Array(checklist.keys)
+            var locationLabel0 = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+            locationLabel0.text = keys[0] + ": " + checklist[keys[0]]!
+            locationLabel0.center = CGPoint(x: 207, y: 230)
+            scoreView!.addSubview(locationLabel0)
+            
+            var locationLabel1 = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+            locationLabel1.text = keys[1] + ": " + checklist[keys[1]]!
+            locationLabel1.center = CGPoint(x: 207, y: 260)
+            scoreView!.addSubview(locationLabel1)
+            
+            var locationLabel2 = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+            locationLabel2.text = keys[2] + ": " + checklist[keys[2]]!
+            locationLabel2.center = CGPoint(x: 207, y: 290)
+            scoreView!.addSubview(locationLabel2)
+            
+            if score == 100 {
+                let congrats = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+                congrats.text = "CONGRATULATIONS!"
+                congrats.center = CGPoint(x: 207, y: 340)
+                scoreView!.addSubview(congrats)
+                continueGame = false
+            }
         }
-        
+    }
+    
+    @IBAction func scoreTriggerTapped(_ sender: Any) {
+        //        guard let lastGeoAnchor = geoAnchors.last else {
+        //            showToast("Nothing to undo")
+        //            return
+        //        }
+        //
+        //        // Remove geo anchor from the scene.
+        //        arView.session.remove(anchor: lastGeoAnchor.geoAnchor)
+        //
+        //        // Remove map overlay
+        //        mapView.removeOverlay(lastGeoAnchor.mapOverlay)
+        //
+        //        // Remove the element from the collection.
+        //        geoAnchors.removeLast()
+        //
+        //        showToast("Removed last added anchor")
+        var reachedLocationName = "olin"
+        if score == 33 {
+            reachedLocationName = "alin"
+            score += 34
+        }
+        else if score == 67 {
+            reachedLocationName = "elin"
+            score += 33
+        }
+        else {
+            score += 33
+        }
+        checklist[reachedLocationName] = "Discovered!"
+        // Finished
+        scoreSheetTapped(self)
     }
     
     // Responds to a user tap on the AR view.
@@ -150,31 +216,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         let location = mapView.convert(point, toCoordinateFrom: mapView)
         addGeoAnchor(at: location)
     }
-    
-    // Removes the most recent geo anchor.
-    @IBAction func undoButtonTapped(_ sender: Any) {
-//        guard let lastGeoAnchor = geoAnchors.last else {
-//            showToast("Nothing to undo")
-//            return
-//        }
-//
-//        // Remove geo anchor from the scene.
-//        arView.session.remove(anchor: lastGeoAnchor.geoAnchor)
-//
-//        // Remove map overlay
-//        mapView.removeOverlay(lastGeoAnchor.mapOverlay)
-//
-//        // Remove the element from the collection.
-//        geoAnchors.removeLast()
-//
-//        showToast("Removed last added anchor")
-        print("Score++")
-        score += 10
-    }
-    
-    
-    // MARK: - Methods
-    
+            
     // Presents the available actions when the user presses the menu button.
     func presentAdditionalActions() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -378,7 +420,6 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
                                  heading: mapView.camera.heading)
         mapView.setCamera(camera, animated: false)
     }
-    
     
     
     // MARK: - MKMapViewDelegate
