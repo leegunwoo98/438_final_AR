@@ -214,6 +214,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
     func handleTapOnMapView(_ sender: UITapGestureRecognizer) {
         let point = sender.location(in: mapView)
         let location = mapView.convert(point, toCoordinateFrom: mapView)
+        print(location)
         addGeoAnchor(at: location)
     }
             
@@ -390,15 +391,10 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
 //        var translation = matrix_identity_float4x4
-//        translation.columns.3.z = 0 // Translate 10 cm in front of the camera
+//        translation.columns.3.z = 0.1 // Translate 10 cm in front of the camera
 //        node.simdTransform = matrix_multiply(frame.camera.transform, translation)
-        let trans = frame.camera.transform.translation
         for (index, anchor) in self.geoAnchors.enumerated() {
-            let x = anchor.geoAnchor.coordinate.latitude
-            let y = anchor.geoAnchor.coordinate.longitude
-            let z = anchor.geoAnchor.altitude
-            let distance = sqrt(pow(Float(x) - trans.x, 2) + pow(Float(y)-trans.y, 2) + pow(Float(z!)-trans.z, 2))
-            if (distance < 1){
+            if (distanceFromDevice(anchor.geoAnchor.coordinate) < 3){
                 print("Hi")
                 arView.session.remove(anchor: anchor.geoAnchor)
                                 
