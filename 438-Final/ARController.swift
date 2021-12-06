@@ -76,8 +76,8 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         restartSession()
                 
         // Add tap gesture recognizers
-        arView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnARView(_:))))
-        mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnMapView(_:))))
+//        arView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnARView(_:))))
+//        mapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapOnMapView(_:))))
         
         scoreView = UIView(frame: self.arView.frame)
         arView.addSubview(scoreView!)
