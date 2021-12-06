@@ -33,7 +33,10 @@ extension ARController: ARCoachingOverlayViewDelegate {
         hideUIForCoaching(false)
         for location in self.customLocations {
             print (location.altitude)
-            self.addGeoAnchor(at: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),altitude: CLLocationDistance(location.altitude))
+//            self.addGeoAnchor(at: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),altitude: CLLocationDistance(location.altitude))
+            let anchor = ARGeoAnchor(name: location.name, coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude), altitude: CLLocationDistance(location.altitude))
+            self.addGeoAnchor(anchor)
+//            self.anchorName[]
         }
     }
 

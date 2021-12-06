@@ -43,9 +43,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSou
         // Add locations to 'selectedLocations' array
         // Fixed size is going to be 3
         selectedLocations = [
-            CustomLocation( -90.30744095893259, 38.64673810842665,   161, "olin"),
-            CustomLocation( -90.30772228652681, 38.6483489506585, 161, "alin"),
-            CustomLocation( -90.30800231730747, 38.64839381265477,    165, "elin")
+            CustomLocation( -90.30732394846754, 38.64720173136602,   160, "Psychology"),
+            CustomLocation( -90.30800231730747, 38.64839381265477,    165, "Olin"),
+            CustomLocation( -90.30704617271222, 38.64822136372284,    166, "Eads"),
+            CustomLocation( -90.30637277049225, 38.64908141836929,    165, "Lopata"),
+            CustomLocation( -90.27570006435369, 38.647642530303706,    165, "Home")
+            
         ]
         
         if theme == "Sam Fox" {

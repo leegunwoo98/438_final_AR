@@ -18,7 +18,6 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var toastLabel: UILabel!
     @IBOutlet weak var trackingStateLabel: UILabel!
-    @IBOutlet weak var undoButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
     
     var name: String?
@@ -32,6 +31,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
     
     let locationManager = CLLocationManager()
     var customLocations:[CustomLocation] = []
+//    var anchorName: Dictionary<ARGeoAnchor, String> = [:]
     
     var checklist: Dictionary<String, String> = [:]
     
@@ -110,7 +110,6 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         if scoreOpen {
             if continueGame {
                 print("Close Scoresheet")
-                undoButton.isEnabled = true
                 scoreOpen = false
                 scoreView?.isHidden = true
             }
@@ -120,7 +119,6 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         }
         else {
             print("Open Scoresheet")
-            undoButton.isEnabled = false
             scoreOpen = true
             
             for subUIView in scoreView?.subviews as [UIView] {
@@ -162,39 +160,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
             }
         }
     }
-    
-    @IBAction func scoreTriggerTapped(_ sender: Any) {
-        //        guard let lastGeoAnchor = geoAnchors.last else {
-        //            showToast("Nothing to undo")
-        //            return
-        //        }
-        //
-        //        // Remove geo anchor from the scene.
-        //        arView.session.remove(anchor: lastGeoAnchor.geoAnchor)
-        //
-        //        // Remove map overlay
-        //        mapView.removeOverlay(lastGeoAnchor.mapOverlay)
-        //
-        //        // Remove the element from the collection.
-        //        geoAnchors.removeLast()
-        //
-        //        showToast("Removed last added anchor")
-        var reachedLocationName = "olin"
-        if score == 33 {
-            reachedLocationName = "alin"
-            score += 34
-        }
-        else if score == 67 {
-            reachedLocationName = "elin"
-            score += 33
-        }
-        else {
-            score += 33
-        }
-        checklist[reachedLocationName] = "Discovered!"
-        // Finished
-        scoreSheetTapped(self)
-    }
+
     
     // Responds to a user tap on the AR view.
     @objc
@@ -292,6 +258,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
         var geoAnchor: ARGeoAnchor!
         if let altitude = altitude {
             geoAnchor = ARGeoAnchor(coordinate: location, altitude: altitude)
+            print(altitude)
         } else {
             geoAnchor = ARGeoAnchor(coordinate: location)
         }
@@ -306,6 +273,11 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
             alertUser(withTitle: "Cannot add geo anchor", message: "Unable to add geo anchor because geotracking has not yet localized.")
             return
         }
+        let anchorIndicator = AnchorIndicator(center: geoAnchor.coordinate)
+
+        // Remember the geo anchor we just added
+        let anchorInfo = GeoAnchorWithAssociatedData(geoAnchor: geoAnchor, mapOverlay: anchorIndicator)
+        self.geoAnchors.append(anchorInfo)
         arView.session.add(anchor: geoAnchor)
     }
     
@@ -337,7 +309,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
             self.mapView.addOverlay(anchorIndicator)
 
             // Remember the geo anchor we just added
-            let anchorInfo = GeoAnchorWithAssociatedData(geoAnchor: geoAnchor, mapOverlay: anchorIndicator)
+            let anchorInfo = GeoAnchorWithAssociatedData(geoAnchor: geoAnchor, mapOverlay: anchorIndicator )
             self.geoAnchors.append(anchorInfo)
         }
     }
@@ -399,8 +371,21 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
                 arView.session.remove(anchor: anchor.geoAnchor)
                                 
                 // Remove map overlay
+                let reachedLocationName = anchor.geoAnchor.name
+                if score == 33 {
+                    score += 34
+                }
+                else if score == 67 {
+                    score += 33
+                }
+                else {
+                    score += 33
+                }
+                checklist[reachedLocationName!] = "Discovered!"
+                // Finished
                 mapView.removeOverlay(anchor.mapOverlay)
                 self.geoAnchors.remove(at:index)
+                scoreSheetTapped(self)
             }
         }
     }

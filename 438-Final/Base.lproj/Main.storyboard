@@ -113,24 +113,6 @@
                                     <constraint firstItem="qiH-Fi-w7X" firstAttribute="height" secondItem="H8j-q7-sFk" secondAttribute="height" multiplier="0.7" id="BeP-4S-4AJ"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSh-lM-HmZ">
-                                <rect key="frame" x="20" y="559.66666666666663" width="40" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Dck-us-bj0"/>
-                                    <constraint firstAttribute="width" constant="40" id="vh9-il-al9"/>
-                                </constraints>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" image="checkmark.square" catalog="system"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="scoreTriggerTapped:" destination="7Ti-ua-abE" eventType="touchUpInside" id="Zdp-4j-yak"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqZ-fv-GXZ">
                                 <rect key="frame" x="354" y="559.66666666666663" width="40" height="40"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -186,12 +168,10 @@
                         <viewLayoutGuide key="safeArea" id="WvH-Vm-Xdr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vTX-4v-CcI" firstAttribute="top" secondItem="RSh-lM-HmZ" secondAttribute="bottom" constant="20" id="5BE-X4-gS2"/>
                             <constraint firstItem="H8j-q7-sFk" firstAttribute="leading" secondItem="xsA-lZ-uag" secondAttribute="leading" id="91N-zi-uws"/>
                             <constraint firstItem="BSV-wL-BgU" firstAttribute="leading" secondItem="WvH-Vm-Xdr" secondAttribute="leading" constant="20" id="Aei-jz-S98"/>
                             <constraint firstItem="vTX-4v-CcI" firstAttribute="top" secondItem="sqZ-fv-GXZ" secondAttribute="bottom" constant="20" id="Bg8-lI-lGw"/>
                             <constraint firstItem="BSV-wL-BgU" firstAttribute="top" secondItem="WvH-Vm-Xdr" secondAttribute="top" constant="20" id="D0z-fP-TL7"/>
-                            <constraint firstItem="RSh-lM-HmZ" firstAttribute="leading" secondItem="WvH-Vm-Xdr" secondAttribute="leading" constant="20" id="QEB-IT-g7i"/>
                             <constraint firstAttribute="bottom" secondItem="H8j-q7-sFk" secondAttribute="bottom" constant="30" id="gks-XP-zno"/>
                             <constraint firstAttribute="trailing" secondItem="H8j-q7-sFk" secondAttribute="trailing" id="jZe-bg-d2C"/>
                             <constraint firstItem="e3n-mW-0BS" firstAttribute="centerY" secondItem="WvH-Vm-Xdr" secondAttribute="centerY" id="lm7-lb-Zl8"/>
@@ -206,7 +186,6 @@
                         <outlet property="menuButton" destination="sqZ-fv-GXZ" id="omn-DC-rhN"/>
                         <outlet property="toastLabel" destination="e3n-mW-0BS" id="ZME-2o-RSs"/>
                         <outlet property="trackingStateLabel" destination="BSV-wL-BgU" id="9es-JB-o7U"/>
-                        <outlet property="undoButton" destination="RSh-lM-HmZ" id="PrZ-az-jgX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L3y-Sy-tKj" sceneMemberID="firstResponder"/>
@@ -253,7 +232,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="line.3.horizontal" catalog="system" width="128" height="64"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
