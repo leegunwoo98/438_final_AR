@@ -151,7 +151,13 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
             locationLabel2.center = CGPoint(x: 207, y: 290)
             scoreView!.addSubview(locationLabel2)
             
-            if score == 100 {
+            var discovered = 0
+            for key in Array(checklist.keys) {
+                if checklist[key] == "Discovered!" {
+                    discovered += 1
+                }
+            }
+            if discovered == Array(checklist.keys).count {
                 let congrats = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
                 congrats.text = "CONGRATULATIONS!"
                 congrats.center = CGPoint(x: 207, y: 340)
@@ -372,15 +378,7 @@ class ARController: UIViewController, ARSessionDelegate, CLLocationManagerDelega
                                 
                 // Remove map overlay
                 let reachedLocationName = anchor.geoAnchor.name
-                if score == 33 {
-                    score += 34
-                }
-                else if score == 67 {
-                    score += 33
-                }
-                else {
-                    score += 33
-                }
+                score += 100
                 checklist[reachedLocationName!] = "Discovered!"
                 // Finished
                 mapView.removeOverlay(anchor.mapOverlay)

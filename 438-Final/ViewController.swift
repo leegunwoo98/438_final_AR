@@ -43,8 +43,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSou
         // Add locations to 'selectedLocations' array
         // Fixed size is going to be 3
         self.selectedLocations = [
-            CustomLocation( -90.30732394846754, 38.64720173136602,   160, "Psychology"),
-            CustomLocation( -90.30800231730747, 38.64839381265477,    166, "Olin"),
+//            CustomLocation( -90.30732394846754, 38.64720173136602,   160, "Psychology"),
+//            CustomLocation( -90.30800231730747, 38.64839381265477,    166, "Olin"),
             CustomLocation( -90.30704617271222, 38.64822136372284,    166, "Eads"),
             CustomLocation( -90.30637277049225, 38.64908141836929,    166, "Lopata"),
             CustomLocation( -90.27570006435369, 38.647642530303706,    165, "Home")
@@ -73,9 +73,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSou
         themeField.inputView = pickerView
         themeField.textAlignment = .center
         themeField.placeholder = "-- Select Theme --"
-        nameField.placeholder = "User"
-        name = "User"
-        theme = "Food"
+        nameField.placeholder = "Your Name"
+        name = "Anonymous User"
+        theme = "Arts and Sciences"
         
         self.nameField.delegate = self
         
